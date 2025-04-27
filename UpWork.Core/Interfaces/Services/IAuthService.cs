@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity.Data;
 using System.Threading.Tasks;
 using UpWork.Application.DTOs.Auth;
 using UpWork.Application.DTOs.Auth.Results;
-using UpWork.UpWork.Application.DTOs.Auth;
 using LoginRequest = UpWork.Application.DTOs.Auth.LoginRequest;
 using RegisterRequest = UpWork.Application.DTOs.Auth.RegisterRequest;
 

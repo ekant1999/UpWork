@@ -1,4 +1,4 @@
-﻿namespace UpWork.UpWork.Application.DTOs.Auth
+﻿namespace UpWork.Application.DTOs.Auth
 {
     public class VerifyResetCodeRequest
     {

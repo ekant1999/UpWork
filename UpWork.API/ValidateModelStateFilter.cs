@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UpWork.UpWork.API
+namespace UpWork.API
 {
     public class ValidateModelStateFilter : ActionFilterAttribute
     {

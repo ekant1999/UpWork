@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UpWork.Application.DTOs.Auth;
 using UpWork.Core.Interfaces.Services;
-using UpWork.UpWork.API;
+using UpWork.API;
 
 namespace UpWork.API.Controllers
 {
