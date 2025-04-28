@@ -1,7 +1,7 @@
 ﻿using UpWork.Core.Entities.Communication;
 using UpWork.Core.Entities.Identity;
 
-namespace UpWork.UpWork.Core.Entities.Communication
+namespace UpWork.Core.Entities.Communication
 {
     public class Message
     {

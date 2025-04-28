@@ -2,7 +2,7 @@
 using UpWork.Core.Entities.Jobs;
 using UpWork.Core.Entities.Payments;
 using UpWork.Core.Entities.Proposals;
-using UpWork.UpWork.Core.Entities.Disputes;
+using UpWork.Core.Entities.Disputes;
 
 namespace UpWork.Core.Entities.Contracts
 {
