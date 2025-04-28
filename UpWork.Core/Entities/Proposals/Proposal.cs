@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using UpWork.Core.Entities.Identity;
-using UpWork.Core.Entities.Jobs;
+using Jobs = UpWork.Core.Entities.Jobs;
 using Contract = UpWork.Core.Entities.Contracts.Contract;
 
 namespace UpWork.Core.Entities.Proposals
@@ -21,7 +21,7 @@ namespace UpWork.Core.Entities.Proposals
         public DateTime SubmissionDate { get; set; }
         public string Status { get; set; }
 
-        public virtual Job Job { get; set; }
+        public virtual Jobs.Job Job { get; set; }
         public virtual FreelancerUser FreelancerUser { get; set; }
         public virtual Contract Contract { get; set; }
     }

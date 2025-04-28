@@ -1,5 +1,5 @@
 ﻿using UpWork.Core.Entities.Identity;
-using UpWork.Core.Entities.Jobs;
+using Jobs = UpWork.Core.Entities.Jobs;
 using UpWork.Core.Entities.Payments;
 using UpWork.Core.Entities.Proposals;
 using UpWork.Core.Entities.Disputes;
@@ -25,7 +25,7 @@ namespace UpWork.Core.Entities.Contracts
         public bool FreelancerAccepted { get; set; }
 
         // Navigation properties
-        public virtual Job Job { get; set; }
+        public virtual Jobs.Job Job { get; set; }
         public virtual Proposal Proposal { get; set; }
         public virtual ClientUser ClientUser { get; set; }
         public virtual FreelancerUser FreelancerUser { get; set; }
