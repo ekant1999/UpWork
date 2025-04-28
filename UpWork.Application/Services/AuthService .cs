@@ -1,7 +1,6 @@
 ﻿using UpWork.Application.DTOs.Auth;
 using UpWork.Application.DTOs.Auth.Results;
 using UpWork.Core.Interfaces.Services;
-using UpWork.Application.DTOs.Auth;
 
 namespace UpWork.Application.Services
 {
