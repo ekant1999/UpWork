@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Contracts;
-using UpWork.Core.Entities.Identity;
+﻿using UpWork.Core.Entities.Identity;
 using UpWork.Core.Entities.Proposals;
 using UpWork.Core.Entities.Skills;
 using Contract = UpWork.Core.Entities.Contracts.Contract;

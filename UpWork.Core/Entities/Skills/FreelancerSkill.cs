@@ -1,5 +1,4 @@
-﻿using UpWork.Core.Entities.Profile;
-
+﻿
 namespace UpWork.Core.Entities.Skills
 {
     public class FreelancerSkill
@@ -11,7 +10,6 @@ namespace UpWork.Core.Entities.Skills
         public int YearsOfExperience { get; set; }
 
         // Navigation properties
-        public virtual FreelancerProfile FreelancerProfile { get; set; }
         public virtual Skill Skill { get; set; }
     }
 }

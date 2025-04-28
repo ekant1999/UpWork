@@ -1,18 +1,35 @@
-﻿using UpWork.Core.Entities.Profile;
-
+﻿using Job = UpWork.Core.Entities.Jobs.Job;
+using Contract = UpWork.Core.Entities.Contracts.Contract;
 namespace UpWork.Core.Entities.Identity
 {
-    public class ClientUser : ApplicationUser
+    public class ClientUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime? LastActive { get; set; }
-        public bool IsActive { get; set; } = true;
-        public string ProfilePictureUrl { get; set; }
+        public string UserId { get; set; }
+        public string CompanyName { get; set; }
+        public string CompanySize { get; set; }
+        public string Industry { get; set; }
+        public string CompanyWebsite { get; set; }
+        public string Description { get; set; }
+
+        // Address fields
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ZipCode { get; set; }
+
+        // Business details
+        public string BusinessType { get; set; }
+        public string TaxIdentificationNumber { get; set; }
+
+        // Payment info
+        public string PaymentMethod { get; set; }
+        public bool PaymentVerified { get; set; }
 
         // Navigation properties
-        public virtual UserProfile Profile { get; set; }
-        public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
+        public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<Jobs.Job> Jobs { get; set; }
+        public virtual ICollection<Contract> Contracts { get; set; }
     }
+
+
 }
