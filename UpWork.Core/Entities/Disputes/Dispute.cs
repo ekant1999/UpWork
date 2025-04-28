@@ -1,7 +1,7 @@
 ﻿using UpWork.Core.Entities.Identity;
 using Contract = UpWork.Core.Entities.Contracts.Contract;
 
-namespace UpWork.UpWork.Core.Entities.Disputes
+namespace UpWork.Core.Entities.Disputes
 {
     public class Dispute
     {
