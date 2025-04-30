@@ -63,6 +63,8 @@ namespace UpWork.Infrastructure.Data
             modelBuilder.Entity<FreelancerSkill>().HasKey(fs => new { fs.FreelancerId, fs.SkillId });
             modelBuilder.Entity<SavedJob>().HasKey(sj => new { sj.UserId, sj.JobId });
             modelBuilder.Entity<ChatRoomUser>().HasKey(cru => new { cru.ChatRoomId, cru.UserId });
+            modelBuilder.Entity<ClientUser>().HasKey(c => c.UserId);
+            modelBuilder.Entity<FreelancerUser>().HasKey(f => f.UserId);
 
             // ApplicationUser → ClientUser / FreelancerUser (1:1)
             modelBuilder.Entity<ApplicationUser>()
@@ -146,6 +148,21 @@ namespace UpWork.Infrastructure.Data
                 .WithMany(s => s.FreelancerSkills)
                 .HasForeignKey(fs => fs.SkillId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Proposal ↔ Contract → fix cascade path
+            modelBuilder.Entity<Contract>()
+                .HasOne(c => c.Proposal)
+                .WithOne(p => p.Contract)
+                .HasForeignKey<Contract>(c => c.ProposalId)
+                .OnDelete(DeleteBehavior.Restrict); // avoid multiple cascade paths
+
+            // Contract ↔ Job (1:1, no cascade)
+            modelBuilder.Entity<Contract>()
+                .HasOne(c => c.Job)
+                .WithOne(j => j.Contract)
+                .HasForeignKey<Contract>(c => c.JobId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }
