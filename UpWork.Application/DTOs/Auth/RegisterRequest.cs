@@ -13,13 +13,13 @@ namespace UpWork.Application.DTOs.Auth
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required, Phone]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required, MinLength(6)]
         public string Password { get; set; }
 
-        [Required, Compare("Password")]
+        [Required, MinLength(6), Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]

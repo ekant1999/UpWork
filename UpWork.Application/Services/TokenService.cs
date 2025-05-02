@@ -6,24 +6,15 @@ using UpWork.Core.Interfaces.Services;
 
 namespace UpWork.Application.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly string _secretKey;
         private readonly int _expiryMinutes;
 
-        public TokenService(string secretKey, int expiryMinutes = 60)
+        public TokenService(IConfiguration configuration)
         {
-            _secretKey = secretKey;
-            _expiryMinutes = expiryMinutes;
-        }
-        public TokenService(ITokenService tokenService, string secretKey, int expiryMinutes = 60) : this(secretKey, expiryMinutes)
-        {
-        }
-
-        private readonly ITokenService _tokenService;
-        public TokenService(ITokenService tokenService)
-        {
-            _tokenService = tokenService;
+            _secretKey = configuration["JwtSettings:Secret"];
+            _expiryMinutes = int.Parse(configuration["JwtSettings:expiryMinutes"]);
         }
 
         public string GenerateToken(string userId)
@@ -44,7 +35,7 @@ namespace UpWork.Application.Services
             var token = tokenHandler.CreateToken(tokenDiscriptor);
             return tokenHandler.WriteToken(token);
         }
-        public ClaimsPrincipal ValidateToken(string token)
+        public bool ValidateToken(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_secretKey);
@@ -69,11 +60,11 @@ namespace UpWork.Application.Services
                     throw new SecurityTokenException("Invalid token algorithm");
                 }
 
-                return principal; 
+                return true; 
             }
             catch
             {
-                return null;
+                return false;
             }
         }
 

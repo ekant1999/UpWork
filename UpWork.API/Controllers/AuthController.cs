@@ -2,6 +2,7 @@
 using UpWork.Application.DTOs.Auth;
 using UpWork.Core.Interfaces.Services;
 using UpWork.API;
+using UpWork.Infrastructure.Data;
 
 namespace UpWork.API.Controllers
 {
@@ -10,15 +11,15 @@ namespace UpWork.API.Controllers
         public IConfiguration _configuration { get; }
         private readonly IAuthService _authService;
         private readonly IEmailService _emailService;
+        private ApplicationDbContext _applicationDbContext { get; }
 
-
-        //public ApplicationDbContext _applicationDbContext { get; }
-
-        public AuthController(IConfiguration configuration, IAuthService authService, IEmailService emailService)
+        public AuthController(IConfiguration configuration, IAuthService authService, IEmailService emailService,
+                                ApplicationDbContext dbContext)
         {
             _configuration = configuration;
             _authService = authService;
             _emailService = emailService;
+            _applicationDbContext = dbContext;
         }
 
         // httpost register
