@@ -8,7 +8,6 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-        // 👇 Use your actual local/dev connection string here
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UpWorkDb;Trusted_Connection=True;");
 
         return new ApplicationDbContext(optionsBuilder.Options);
