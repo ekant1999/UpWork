@@ -33,7 +33,8 @@ namespace UpWork.Core.Entities.Identity
         public List<string> Certifications { get; set; } = new();
 
         // Navigation properties
-        public virtual ApplicationUser User { get; set; } // 1-to-1 link
+        public virtual ApplicationUser User { get; set; }
+
         public virtual ICollection<FreelancerSkill> Skills { get; set; } = new List<FreelancerSkill>(); // Many-to-many with Skill
         public virtual ICollection<Proposal> Proposals { get; set; } = new List<Proposal>();
         public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
