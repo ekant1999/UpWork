@@ -9,6 +9,7 @@ using UpWork.Infrastructure.Data;
 using UpWork.Infrastructure.Repositories;
 using RegisterRequest = UpWork.Application.DTOs.Auth.RegisterRequest;
 using LoginRequest = UpWork.Application.DTOs.Auth.LoginRequest;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace UpWork.Application.Services
@@ -69,16 +70,7 @@ namespace UpWork.Application.Services
             ApplicationUser user = new ApplicationUser();
             PopulateApplicationUser(request, ref user);
 
-            if (request.Role == "Client")
-            {
-                var clientUser = new ClientUser();
-            }
-            else
-            {
-                var freelancerUser = new FreelancerUser();
-            }
-
-            // Create the user account
+            // Create the user in Identity
             var createResult = await _userManager.CreateAsync(user, request.Password);
             if (!createResult.Succeeded)
             {
@@ -90,6 +82,30 @@ namespace UpWork.Application.Services
             //await EnsureRoleExists(request.UserType);
             await _userManager.AddToRoleAsync(user, request.Role);
             await _userManager.AddToRoleAsync(user, ApplicationRoles.User);
+            if (request.Role == "Client")
+            {
+                var client = new ClientUser
+                {
+                    UserId = user.Id,
+                    User = user,
+                };
+                user.ClientUser = client;
+                applicationDbContext.ClientUsers.Add(client);
+            }
+            else if (request.Role == "Freelancer")
+            {
+                var freelancer = new FreelancerUser
+                {
+                    UserId = user.Id,
+                    User = user,
+                };
+                user.FreelancerUser = freelancer;
+                applicationDbContext.FreelancerUsers.Add(freelancer);
+            }
+
+            // Save changes to database (persist profile entities)
+            await applicationDbContext.SaveChangesAsync();
+
 
             // Create initial profile
             //await _userRepository.CreateInitialProfileAsync(user.Id, request.UserType);
@@ -102,7 +118,6 @@ namespace UpWork.Application.Services
             result.VerificationToken = verificationToken;
             return result;
         }
-
 
         private void PopulateApplicationUser(RegisterRequest registerRequest, ref ApplicationUser user)
         {

@@ -33,7 +33,11 @@ try
     });
 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    {
+        options.UseSqlServer(
+            builder.Configuration.GetConnectionString("DefaultConnection"))
+            .LogTo(Console.WriteLine, LogLevel.Information);
+    });
 
     builder.Services.AddScoped<ValidateModelStateFilter>();
 
@@ -71,6 +75,8 @@ try
 catch (Exception ex)
 {
     Log.Fatal(ex, "Application start-up failed");
+    Console.WriteLine(ex.ToString());
+    throw;
 }
 finally
 {
