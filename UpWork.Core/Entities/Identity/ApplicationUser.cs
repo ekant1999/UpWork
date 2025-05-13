@@ -9,7 +9,7 @@ namespace UpWork.Core.Entities.Identity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string ProfilePictureUrl { get; set; }
+        public string? ProfilePictureUrl { get; set; }
 
         // Security & Tracking
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
