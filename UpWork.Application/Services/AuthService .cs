@@ -80,7 +80,8 @@ namespace UpWork.Application.Services
 
             // Assign role
             //await EnsureRoleExists(request.UserType);
-            await _userManager.AddToRoleAsync(user, request.Role);
+            var role = request.Role =="Client" ? ApplicationRoles.Client : ApplicationRoles.Freelancer;
+            await _userManager.AddToRoleAsync(user, role);
             await _userManager.AddToRoleAsync(user, ApplicationRoles.User);
             if (request.Role == "Client")
             {
