@@ -56,7 +56,14 @@ try
     builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     builder.Services.AddScoped<IClientUserRepository, ClientRepository>();
     builder.Services.AddScoped<ClientRepository>();
+
     var app = builder.Build();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        await RoleSeeder.SeedRolesAsync(roleManager);
+    }
 
     if (app.Environment.IsDevelopment())
     {
