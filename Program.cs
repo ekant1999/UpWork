@@ -8,6 +8,7 @@ using UpWork.Infrastructure.Data;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using UpWork.Infrastructure.Repositories;
+using ISDN.RST.Engine.ServiceCollectionExtension;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -39,8 +40,6 @@ try
             .LogTo(Console.WriteLine, LogLevel.Information);
     });
 
-    builder.Services.AddScoped<ValidateModelStateFilter>();
-
     builder.Services.AddControllers();
 
     builder.Services.AddEndpointsApiExplorer();
@@ -50,12 +49,8 @@ try
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-    builder.Services.AddScoped<IEmailService, EmailService>();
-    builder.Services.AddScoped<IAuthService, AuthService>();
-    builder.Services.AddScoped<ITokenService, TokenService>();
-    builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-    builder.Services.AddScoped<IClientUserRepository, ClientRepository>();
-    builder.Services.AddScoped<ClientRepository>();
+    builder.Services.AddCoreDependencies();
+
 
     var app = builder.Build();
 

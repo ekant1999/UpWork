@@ -88,7 +88,7 @@ namespace UpWork.Application.Services
                 var client = new ClientUser
                 {
                     UserId = user.Id,
-                    User = user,
+                    User = user
                 };
                 user.ClientUser = client;
                 applicationDbContext.ClientUsers.Add(client);
@@ -98,7 +98,7 @@ namespace UpWork.Application.Services
                 var freelancer = new FreelancerUser
                 {
                     UserId = user.Id,
-                    User = user,
+                    User = user
                 };
                 user.FreelancerUser = freelancer;
                 applicationDbContext.FreelancerUsers.Add(freelancer);
