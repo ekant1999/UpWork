@@ -7,29 +7,29 @@ namespace UpWork.Core.Entities.Identity
 {
     public class FreelancerUser
     {
-        public string UserId { get; set; } // FK to ApplicationUser
+        public required string UserId { get; set; } // FK to ApplicationUser
 
         // Freelance Professional Info
-        public string ProfessionalTitle { get; set; }
-        public string Overview { get; set; }
+        public string? ProfessionalTitle { get; set; }
+        public string? Overview { get; set; }
         public decimal HourlyRate { get; set; }
-        public string ExperienceLevel { get; set; } // Beginner, Intermediate, Expert
+        public string? ExperienceLevel { get; set; } // Beginner, Intermediate, Expert
 
         // Availability
-        public string AvailabilityStatus { get; set; } // Available, Partially Available, Not Available
+        public string? AvailabilityStatus { get; set; } // Available, Partially Available, Not Available
         public int WeeklyAvailableHours { get; set; }
         public DateTime AvailableFrom { get; set; }
 
         // Payment Info
-        public string PaymentMethod { get; set; }
-        public string BankAccount { get; set; }
-        public string PayPalEmail { get; set; }
+        public string? PaymentMethod { get; set; }
+        public string? BankAccount { get; set; }
+        public string? PayPalEmail { get; set; }
 
         // Verification Info
         public bool IdentityVerified { get; set; }
 
         // Education & Certifications
-        public string Education { get; set; }
+        public string? Education { get; set; }
         public List<string> Certifications { get; set; } = new();
 
         // Navigation properties
